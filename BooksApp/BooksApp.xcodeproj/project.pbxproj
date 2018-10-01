@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		D84791392162D76A00B001A3 /* BookViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D84791382162D76A00B001A3 /* BookViewController.swift */; };
 		D8B739B92162608F003FCF3B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8B739B82162608F003FCF3B /* AppDelegate.swift */; };
 		D8B739BB2162608F003FCF3B /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8B739BA2162608F003FCF3B /* ViewController.swift */; };
 		D8B739BE21626090003FCF3B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D8B739BC21626090003FCF3B /* Main.storyboard */; };
@@ -26,6 +27,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		D84791382162D76A00B001A3 /* BookViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookViewController.swift; sourceTree = "<group>"; };
 		D8B739B52162608F003FCF3B /* BooksApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BooksApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D8B739B82162608F003FCF3B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D8B739BA2162608F003FCF3B /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -79,6 +81,7 @@
 			children = (
 				D8B739B82162608F003FCF3B /* AppDelegate.swift */,
 				D8B739BA2162608F003FCF3B /* ViewController.swift */,
+				D84791382162D76A00B001A3 /* BookViewController.swift */,
 				D8B739BC21626090003FCF3B /* Main.storyboard */,
 				D8B739BF21626092003FCF3B /* Assets.xcassets */,
 				D8B739C121626092003FCF3B /* LaunchScreen.storyboard */,
@@ -197,6 +200,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D84791392162D76A00B001A3 /* BookViewController.swift in Sources */,
 				D8B739BB2162608F003FCF3B /* ViewController.swift in Sources */,
 				D8B739B92162608F003FCF3B /* AppDelegate.swift in Sources */,
 			);
