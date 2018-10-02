@@ -27,7 +27,7 @@ final class BookViewController: UIViewController {
     @IBOutlet weak var coverImageView: UIImageView!
     @IBOutlet weak var descriptionTextView: UITextView!
 
-    let book = BookViewModel(title: "Moby Dick", subtitle: "A book about a whale", author: "Herman Melville", extendedDescription: "This is a book about a man tryin gto hunt a whale.")
+    var book = BookViewModel(title: "Moby Dick", subtitle: "A book about a whale", author: "Herman Melville", extendedDescription: "This is a book about a man tryin gto hunt a whale.")
 
     override func viewDidLoad() {
         super.viewDidLoad()

@@ -2,7 +2,7 @@ import UIKit
 
 class BookList: UITableViewController {
 
-    let books = [
+    var books = [
         BookViewModel(title: "Title 1", subtitle: "Sub 1", author: "author 1", extendedDescription: "extended 1"),
         BookViewModel(title: "Title 2", subtitle: "Sub 2", author: "author 2", extendedDescription: "extended 2"),
         BookViewModel(title: "Title 3", subtitle: "Sub 2", author: "author 2", extendedDescription: "extended 2")
@@ -12,6 +12,19 @@ class BookList: UITableViewController {
         super.viewDidLoad()
 
         view.backgroundColor = .red
+
+        let networkRequest = NetworkRequest()
+
+
+        let urlString = "https://www.googleapis.com/books/v1/volumes?q=lord"
+        let url = URL(string: urlString)!
+
+        networkRequest.get(url: url) { (books, error) in
+            self.books = books ?? []
+            DispatchQueue.main.async {
+                self.tableView.reloadData()
+            }
+        }
     }
 
     // MARK: - Table view data source
@@ -37,6 +50,16 @@ class BookList: UITableViewController {
 
         return cell
     }
+
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+
+        guard let book = sender as? BookViewModel,
+            let bookController = segue.destination as? BookViewController else {
+            return
+        }
+
+        bookController.book = book
+    }
     /*
     // MARK: - Navigation
 
@@ -52,5 +75,7 @@ class BookList: UITableViewController {
         let selectedBook = books[indexPath.row]
 
         print(selectedBook.title)
+
+        performSegue(withIdentifier: "ToBookSegue", sender: selectedBook)
     }
 }
