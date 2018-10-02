@@ -10,12 +10,15 @@ import UIKit
 
 class BookList: UITableViewController {
 
+    /*
     let books = [
         // These all call `BookViewModel.init`
         BookViewModel(title:"omgomg", subtitle: "fdsafds", author: "fdasdas", extendedDescription: "fadfads"),
         BookViewModel.init(title:"omgomg2", subtitle: "jiojoi", author: "ufdsf9ds", extendedDescription: "wfd bgdfsz klkfda lkjklfdsa  fdsafdsa"),
         .init(title:"omgomg3", subtitle: "o9of", author: "fdsagds", extendedDescription: " klkfda lkjklfdsa  fdsafdfds ds fds adssa"),
-    ]
+    ]*/
+    
+    var books: [BookViewModel] = []
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -27,6 +30,18 @@ class BookList: UITableViewController {
         // self.navigationItem.rightBarButtonItem = self.editButtonItem
 
         view.backgroundColor = .gray
+
+        let networkRequest = NetworkRequest()
+        let urlString = "https://www.googleapis.com/books/v1/volumes?q=George"
+        let url = URL(string: urlString)!
+
+        networkRequest.get(url: url) { (books, error) in
+            self.books = books ?? []
+
+            DispatchQueue.main.async {
+                self.tableView.reloadData()
+            }
+        }
     }
 
     // MARK: - Table view data source

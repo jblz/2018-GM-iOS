@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		1F0A43932163CE2200603609 /* BookList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F0A43922163CE2200603609 /* BookList.swift */; };
+		1F66B74C2163FC4100A2D204 /* NetworkRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F66B74B2163FC4100A2D204 /* NetworkRequest.swift */; };
+		1F66B74E216402B500A2D204 /* GoogleBookRemote.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F66B74D216402B500A2D204 /* GoogleBookRemote.swift */; };
 		D84791392162D76A00B001A3 /* BookViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D84791382162D76A00B001A3 /* BookViewController.swift */; };
 		D8B739B92162608F003FCF3B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8B739B82162608F003FCF3B /* AppDelegate.swift */; };
 		D8B739BB2162608F003FCF3B /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8B739BA2162608F003FCF3B /* ViewController.swift */; };
@@ -29,6 +31,8 @@
 
 /* Begin PBXFileReference section */
 		1F0A43922163CE2200603609 /* BookList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookList.swift; sourceTree = "<group>"; };
+		1F66B74B2163FC4100A2D204 /* NetworkRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkRequest.swift; sourceTree = "<group>"; };
+		1F66B74D216402B500A2D204 /* GoogleBookRemote.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoogleBookRemote.swift; sourceTree = "<group>"; };
 		D84791382162D76A00B001A3 /* BookViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookViewController.swift; sourceTree = "<group>"; };
 		D8B739B52162608F003FCF3B /* BooksApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BooksApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D8B739B82162608F003FCF3B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -81,7 +85,9 @@
 		D8B739B72162608F003FCF3B /* BooksApp */ = {
 			isa = PBXGroup;
 			children = (
+				1F66B74B2163FC4100A2D204 /* NetworkRequest.swift */,
 				1F0A43922163CE2200603609 /* BookList.swift */,
+				1F66B74D216402B500A2D204 /* GoogleBookRemote.swift */,
 				D8B739B82162608F003FCF3B /* AppDelegate.swift */,
 				D8B739BA2162608F003FCF3B /* ViewController.swift */,
 				D84791382162D76A00B001A3 /* BookViewController.swift */,
@@ -204,9 +210,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				1F0A43932163CE2200603609 /* BookList.swift in Sources */,
+				1F66B74E216402B500A2D204 /* GoogleBookRemote.swift in Sources */,
 				D84791392162D76A00B001A3 /* BookViewController.swift in Sources */,
 				D8B739BB2162608F003FCF3B /* ViewController.swift in Sources */,
 				D8B739B92162608F003FCF3B /* AppDelegate.swift in Sources */,
+				1F66B74C2163FC4100A2D204 /* NetworkRequest.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
