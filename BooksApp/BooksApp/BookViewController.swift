@@ -33,7 +33,7 @@ final class BookViewController: UIViewController {
     @IBOutlet weak var coverImageView: UIImageView!
     @IBOutlet weak var descriptionTextView: UITextView!
 
-    let book = BookViewModel(
+    var book = BookViewModel(
         title: "Moby Dick",
         subtitle: "A book about a whale",
         author: "Melville",
