@@ -31,14 +31,27 @@ class BookList: UITableViewController, UISearchResultsUpdating {
         
         networkRequest.get(url: url) { (books, error) in
             if let error = error {
-                print(error)
+                DispatchQueue.main.async {
+                    self.showError(error)
+                }
                 return
             }
+
             self.books = books ?? []
             DispatchQueue.main.async {
                 self.tableView.reloadData()
             }
         }
+    }
+    
+    private func showError(_ error: Error) {
+        let description = error.localizedDescription;
+
+        let alertController = UIAlertController(title: "Error", message: description, preferredStyle: .alert)
+
+        let dismissAction = UIAlertAction(title: "OK", style: .cancel)
+        alertController.addAction(dismissAction)
+        present(alertController, animated: true)
     }
     
     private func insertSearchController() {
