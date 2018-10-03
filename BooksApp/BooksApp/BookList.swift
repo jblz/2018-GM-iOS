@@ -1,9 +1,12 @@
 import UIKit
+import Kingfisher
 
 class BookList: UITableViewController, UISearchResultsUpdating {
     private lazy var searchController: UISearchController = {
         return UISearchController(searchResultsController: nil)
     }()
+    
+    private lazy var bookIcon = UIImage(named: "book-icon")
 
     var books = [
         BookViewModel(title: "Title 1", subtitle: "Sub 1", author: "author 1", extendedDescription: "extended 1", thumbnail: ""),
@@ -83,6 +86,12 @@ class BookList: UITableViewController, UISearchResultsUpdating {
 
         // 2.- Populate the cell's title
         cell.textLabel?.text = book.title
+        cell.detailTextLabel?.text = book.author
+        cell.imageView?.image = bookIcon
+        
+        if let thumbnailURL = URL(string: book.thumbnail) {
+            cell.imageView?.kf.setImage(with: thumbnailURL, placeholder: bookIcon)
+        }
 
         return cell
     }
@@ -116,7 +125,7 @@ class BookList: UITableViewController, UISearchResultsUpdating {
     }
 
     func updateSearchResults(for searchController: UISearchController) {
-        if let searchText = searchController.searchBar.text, searchText.count > 0 {
+        if let searchText = searchController.searchBar.text, searchText.isEmpty == false {
             scheduler.debounce { [weak self] in
                 self?.search(term: searchText)
             }
