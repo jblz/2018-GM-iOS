@@ -1,30 +1,53 @@
 import UIKit
 
-class BookList: UITableViewController {
+class BookList: UITableViewController, UISearchResultsUpdating {
+    private lazy var searchController: UISearchController = {
+        return UISearchController(searchResultsController: nil)
+    }()
 
     var books = [
-        BookViewModel(title: "Title 1", subtitle: "Sub 1", author: "author 1", extendedDescription: "extended 1"),
-        BookViewModel(title: "Title 2", subtitle: "Sub 2", author: "author 2", extendedDescription: "extended 2"),
-        BookViewModel(title: "Title 3", subtitle: "Sub 2", author: "author 2", extendedDescription: "extended 2")
+        BookViewModel(title: "Title 1", subtitle: "Sub 1", author: "author 1", extendedDescription: "extended 1", thumbnail: ""),
+        BookViewModel(title: "Title 2", subtitle: "Sub 2", author: "author 2", extendedDescription: "extended 2", thumbnail: ""),
+        BookViewModel(title: "Title 3", subtitle: "Sub 2", author: "author 2", extendedDescription: "extended 2", thumbnail: "")
     ]
+
+    private lazy var networkRequest = NetworkRequest()
+    private lazy var scheduler = Scheduler.init(seconds: 2)
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
         view.backgroundColor = .red
-
-        let networkRequest = NetworkRequest()
-
-
-        let urlString = "https://www.googleapis.com/books/v1/volumes?q=lord"
+        insertSearchController()
+    }
+    
+    private func search(term: String) {
+        guard let encodedTerm = term.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed ) else {
+            return
+        }
+        print("searching \(encodedTerm)")
+        let urlString = "https://www.googleapis.com/books/v1/volumes?q=\(encodedTerm)"
         let url = URL(string: urlString)!
-
+        
         networkRequest.get(url: url) { (books, error) in
+            if let error = error {
+                print(error)
+                return
+            }
             self.books = books ?? []
             DispatchQueue.main.async {
                 self.tableView.reloadData()
             }
         }
+    }
+    
+    private func insertSearchController() {
+        searchController.searchResultsUpdater = self
+        searchController.obscuresBackgroundDuringPresentation = false
+        searchController.searchBar.placeholder = "Search books..."
+        
+        navigationItem.searchController = searchController
+        definesPresentationContext = true
     }
 
     // MARK: - Table view data source
@@ -77,5 +100,13 @@ class BookList: UITableViewController {
         print(selectedBook.title)
 
         performSegue(withIdentifier: "ToBookSegue", sender: selectedBook)
+    }
+
+    func updateSearchResults(for searchController: UISearchController) {
+        if let searchText = searchController.searchBar.text, searchText.count > 0 {
+            scheduler.debounce { [weak self] in
+                self?.search(term: searchText)
+            }
+        }
     }
 }
